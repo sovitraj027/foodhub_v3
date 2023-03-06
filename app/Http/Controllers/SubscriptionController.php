@@ -47,6 +47,7 @@ class SubscriptionController extends MainAdminController
         $sub=Subscription::create($insertedData);
         $sub->delivery_time=date('H:i:s', strtotime($request->delivery_time));
         $sub->save();
+        $package=Package::where('id',$sub->package_id)->first();
         
         $user = Auth::user();
         $deliver_order = new DeliveryOrder();
@@ -55,7 +56,11 @@ class SubscriptionController extends MainAdminController
         $deliver_order->delivery_time =date('H:i:s', strtotime($request->delivery_time));   
         $deliver_order->type = "package";
         $deliver_order->status = "pending";
+        $deliver_order->quantity=1;
+        $deliver_order->price=$package->price;
+        $deliver_order->package_id=$package->id;
         $deliver_order->paid_status = 0;
+        
         if ($request->status == 1) {
             $deliver_order->esewa_status = 1;
         } else {
@@ -71,12 +76,6 @@ class SubscriptionController extends MainAdminController
             'subscriptions' => Subscription::where('user_id', auth()->id())->with('package')->get()
         ])->with('message', 'Subscription Added');
    
-    }
-
-
-    public function show(Subscription $subscription)
-    {
-        //
     }
 
     public function edit(Subscription $subscription)

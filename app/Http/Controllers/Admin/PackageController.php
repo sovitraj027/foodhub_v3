@@ -11,23 +11,9 @@ use Illuminate\Http\Request;
 class PackageController extends MainAdminController
 {
     use FileUploadTrait;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        /*"id" => 1
-        "menu_name" => "Veg Chowmin"
-        "menu_type" => "Vegetarian"
-        "menu_description" => "Veg Chowmin"
-        "price" => 100
-        "menu_image" => null
-        "category_id" => 1
-        "status" => 1*/
-
-        // dd(Package::first()->menu_package_items()->get());
         return view('admin.meal_packages.index', [
             'packages' => Package::all(),
         ]);

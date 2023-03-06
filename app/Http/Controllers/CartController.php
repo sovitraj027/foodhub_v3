@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\User;
 use App\Restaurants;
 use App\Cart;
@@ -23,6 +22,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+
 date_default_timezone_set('Asia/Kathmandu');
 
 
@@ -36,7 +36,6 @@ class CartController extends Controller
     {
         $user_id = Auth::user()->id;
         $find_cart_item = Cart::where(['user_id' => $user_id, 'item_id' => $item_id])->first();
-
         if ($find_cart_item != "") {
             $singl_item_price = $find_cart_item->item_price / $find_cart_item->quantity;
             $find_cart_item->increment('quantity');
@@ -117,7 +116,6 @@ class CartController extends Controller
                 $order->cash_status = 0;
             else
                 $order->cash_status = 1;
-
             $order->save();
             $user_details = User::where('userType', 'Admin')->first();
             $order_list = Cart::where('user_id', $user_id)->orderBy('id')->get();
@@ -127,9 +125,9 @@ class CartController extends Controller
             ];
 
             $email = $user_details->email;
-            // Mail::to($email)->send(
-            //     new OwnerMailMessage($details)
-            // );
+            Mail::to($email)->send(
+                new OwnerMailMessage($details)
+            );
 
             $successUrl = url('/success');
             $failureUrl = url('/failure');
@@ -140,7 +138,7 @@ class CartController extends Controller
                 // initialize eSewa client
                 $esewa = new Client($config);
 
-                $esewa->process($order->product_id, $order->item_price, 0, 0, 80);
+                $esewa->process($order->product_id, $order->item_price, 0, 0, 0);
             }
 
             //user mail
@@ -152,14 +150,14 @@ class CartController extends Controller
                 'subject' => getcong('site_name') . ' Order Confirmed',
 
             ];
-            // $user_order_email = $inputs['email'];
-            // Mail::to($user_order_email)->send(
-            //     new \App\Mail\OderMail($details)
-            // );
+            $user_order_email = $inputs['email'];
+            Mail::to($user_order_email)->send(
+                new \App\Mail\OderMail($details)
+            );
 
-            $currentTime =Carbon::now();
+            $currentTime = Carbon::now();
             $oneHourLater = $currentTime->addHour();
-            
+
             $user = Auth::user();
             $deliver_order = new DeliveryOrder;
             $deliver_order->user_id = $user->id;
@@ -167,7 +165,10 @@ class CartController extends Controller
             $deliver_order->delivery_time = $oneHourLater;
             $deliver_order->type = "normal";
             $deliver_order->status = "pending";
+            $deliver_order->quantity = $cart_item->quantity;
+            $deliver_order->price = $cart_item->item_price;
             $deliver_order->paid_status = 0;
+            $deliver_order->item_id= $cart_item->item_id;
             if ($request->status == 1) {
                 $deliver_order->esewa_status = 1;
             } else {

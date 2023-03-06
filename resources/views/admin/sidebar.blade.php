@@ -10,8 +10,8 @@
 				<li class="{{classActivePath('dashboard')}}"><a href="{{ URL::to('admin/dashboard') }}"><i
 							class="fa fa-dashboard"></i>Dashboard</a></li>
 
-				<li class="{{classActivePath('allorder')}}"><a href="{{ URL::to('admin/allorder') }}"><i
-							class="fa fa-cart-plus"></i>Order List</a></li>
+				<li class="{{classActivePath('staffs')}}"><a href="{{route('staffs.index')}}"><i class="fa fa-cart-plus"></i>Order
+						List</a></li>
 
 				<li class="{{classActivePath('users')}}"><a href="{{ URL::to('admin/users') }}"><i
 							class="fa fa-users"></i>Users</a></li>

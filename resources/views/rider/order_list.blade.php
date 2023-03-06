@@ -3,19 +3,8 @@
 @section("content")
 <div id="main">
     <div class="page-header">
-
-
         <h2>All Order List</h2>
-
     </div>
-    {{-- @if(Session::has('flash_message'))
-    <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        {{ Session::get('flash_message') }}
-    </div>
-    @endif --}}
-
     <div class="panel panel-default panel-shadow">
         <div class="panel-body">
 
@@ -29,14 +18,12 @@
                         <th>Address</th>
                         <th>Type</th>
                         <th>Quantity</th>
-                        <th>Item Price</th>
-                        <th>Total Price</th>
-                       
+                        <th>Price</th>
                         <th>Status</th>
+                        <th>Payment</th>
                         <th class="text-center width-100">Action</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach($order_list as $i => $order)
                     <tr>
@@ -45,10 +32,12 @@
                         <td>{{ \App\User::getUserInfo($order->user_id)->mobile }}</td>
                         <td>{{ \App\User::getUserInfo($order->user_id)->address }}</td>
                         <td>{{ $order->type }}</td>
-                        {{-- <td>{{ $order->quantity }}</td>
-                        <td>{{getcong('currency_symbol')}}{{ \App\Menu::getMenunfo($order->item_id)->price }}</td>
-                        <td>{{getcong('currency_symbol')}}{{ $order->item_price }}</td> --}}
+                        <td>{{ $order->quantity }}</td>
+                        <td>{{getcong('currency_symbol')}}{{$order->price }}</td>
                         <td>{{ $order->status }}</td>
+                        <td><input data-id="{{ $order->id }}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger"
+                                data-toggle="toggle" data-on="Paid" data-off="Unpaid" {{ $order->esewa_status ? 'checked' : '' }}></td>
+                       
                         <td class="text-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default-dark dropdown-toggle"
@@ -70,16 +59,12 @@
                                                 class="md md-delete"></i> Delete</a></li>
                                 </ul>
                             </div>
-
                         </td>
-
-
                     </tr>
                     @endforeach
 
                 </tbody>
             </table>
-
             <script type="text/javascript">
                 $(document).ready(function() {
             
@@ -93,7 +78,28 @@
         </div>
         <div class="clearfix"></div>
     </div>
-
 </div>
+@endsection
+@section('scripts')
+<script>
+    $(function() {
+        $('.toggle-class').change(function() {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            var order_id = $(this).data('id');
+            $.ajax({
+                type: "GET"
+                , dataType: "json"
+                , url: '/payment'
+                , data: {
+                    'status': status
+                    , 'order_id': order_id
+                }
+                , success: function(data) {
+                    console.log(data.message)
+                }
+            });
+        })
+    })
 
+</script>
 @endsection

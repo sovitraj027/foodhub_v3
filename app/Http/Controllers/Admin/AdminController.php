@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Auth;
+
 use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
-use Intervention\Image\Facades\Image; 
+use Image;
+// use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class AdminController extends MainAdminController
 {
@@ -32,7 +35,7 @@ class AdminController extends MainAdminController
     	$user = User::findOrFail(Auth::user()->id);
  
 	    
-	    $data =  \Input::except(array('_token')) ;
+	    $data = $request->except('_token');
 	    
 	    $rule=array(
 		        'first_name' => 'required',
@@ -53,10 +56,10 @@ class AdminController extends MainAdminController
 		
 		$icon = $request->file('user_icon');
 		
-		/*if($icon){
+		if($icon){
             
 			
-			 $filename  = str_slug($inputs['name'], '-').'-'.time().'.'.$icon->getClientOriginalExtension();
+			 $filename  = Str::slug($inputs['first_name'], '-') . '-' . md5(time());
 
              $path = public_path('upload/members/');
  			
@@ -65,21 +68,22 @@ class AdminController extends MainAdminController
     		 $user->image_icon = 'upload/members/' . $filename;
         
                  
-           // $user->image_icon = $hardPath;
-        }*/
-        
-        if($icon){
-            $tmpFilePath = 'upload/members/';
-
-            $hardPath =  str_slug($inputs['first_name'], '-').'-'.md5(time());
-
-            $img = Image::make($icon);
-
-            $img->fit(200, 200)->save($tmpFilePath.$hardPath.'-b.jpg');
-            $img->fit(80, 80)->save($tmpFilePath.$hardPath. '-s.jpg');
-
-            $user->image_icon = $hardPath;
+           $user->image_icon = $filename;
         }
+        
+        // if($icon){
+        //     $tmpFilePath = 'upload/members/';
+
+            
+        //     $hardPath = Str::slug($inputs['first_name'], '-').'-'.md5(time());
+
+        //     $img = Image::make($icon);
+
+        //     $img->fit(200, 200)->save($tmpFilePath.$hardPath.'-b.jpg');
+        //     $img->fit(80, 80)->save($tmpFilePath.$hardPath. '-s.jpg');
+
+        //     $user->image_icon = $hardPath;
+        // }
         
 		
 		$user->first_name = $inputs['first_name']; 

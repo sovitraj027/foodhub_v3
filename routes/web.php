@@ -23,16 +23,16 @@ Route::post('esewapay', [EsewaController::class, 'esewaPay'])->name('esewaPay');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
-	Route::get('/', [AdminIndexController::class, 'index'])->name('home');
+	// Route::get('/', [AdminIndexController::class, 'index'])->name('home');
 
 	Route::post('login', [IndexController::class, 'postLogin']);
 	Route::get('logout', [IndexController::class, 'logout']);
 
 	Route::get('dashboard', [DashboardController::class, 'index']);
 
-	Route::get('profile', [AdminController::class,'profile']);
-	Route::post('profile', [AdminController::class,'updateProfile']);
-	Route::post('profile_pass', [AdminController::class,'updatePassword']);
+	Route::get('profile', [AdminController::class, 'profile']);
+	Route::post('profile', [AdminController::class, 'updateProfile']);
+	Route::post('profile_pass', [AdminController::class, 'updatePassword']);
 
 	Route::get('settings', [SettingsController::class, 'settings']);
 	Route::post('settings', [SettingsController::class, 'settingsUpdates']);
@@ -48,18 +48,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 	//Owner
 
-	Route::get('categories', 'CategoriesController@owner_categories');
-	Route::get('categories/addcategory', 'CategoriesController@owner_addeditCategory');
-	Route::get('categories/addcategory/{cat_id}', 'CategoriesController@editCategory');
-	Route::post('categories/addcategory', 'CategoriesController@addnew');
-	Route::get('categories/delete/{cat_id}', 'CategoriesController@delete');
+	// Route::get('categories', 'CategoriesController@owner_categories');
+	// Route::get('categories/addcategory', 'CategoriesController@owner_addeditCategory');
+	// Route::get('categories/addcategory/{cat_id}', 'CategoriesController@editCategory');
+	// Route::post('categories/addcategory', 'CategoriesController@addnew');
+	// Route::get('categories/delete/{cat_id}', 'CategoriesController@delete');
 
 
 	Route::get('orderlist', [OrderController::class, 'owner_orderlist']);
 	Route::get('orderlist/{order_id}/{status}', [OrderController::class, 'owner_order_status']);
 	Route::get('orderlist/{order_id}', [OrderController::class, 'owner_delete']);
 
-	Route::get('reviews', 'RestaurantsController@owner_reviewlist');
 
 	Route::get('users', [UsersController::class, 'userslist']);
 	Route::get('users/adduser', [UsersController::class, 'addeditUser']);
@@ -87,8 +86,10 @@ Route::resource('category', CategoryController::class);
 Route::resource('packages', PackageController::class);
 Route::resource('subscription', SubscriptionController::class);
 Route::resource("menus", FoodMenuController::class);
-Route::resource("staffs",StaffController::class);
+Route::resource("staffs", StaffController::class);
 Route::get('changeStatus', [UsersController::class, 'changeStatus']);
+
+Route::get('payment', [StaffController::class, 'PaymentStatus']);
 
 
 

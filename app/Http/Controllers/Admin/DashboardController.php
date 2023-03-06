@@ -11,6 +11,7 @@ use App\Menu;
 use App\Review;
 use App\Order;
 use App\Http\Requests;
+use App\Models\DeliveryOrder;
 use Illuminate\Http\Request;
 
 
@@ -27,7 +28,7 @@ class DashboardController extends MainAdminController
 
             $menu_count = Menu::count();
 
-            $order_count = Order::count();
+            $order_count = DeliveryOrder::count();
 
             $review_count = Review::count();
 
