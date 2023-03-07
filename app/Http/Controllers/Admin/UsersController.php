@@ -60,6 +60,8 @@ class UsersController extends MainAdminController
                 'last_name' => 'required',
                 'email' => 'required|email|max:75|unique:users',
                 'password' => 'required|min:3|max:15',
+                // 'longitude'=>'required',
+                // 'latitude'=>'required',
             );
         }
         $validator = \Validator::make($data, $rule);

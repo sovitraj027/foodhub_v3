@@ -18,9 +18,21 @@
 <input type="hidden" value="{{$user->latitude}}" id="user_latitude">
 <input type="hidden" value="{{$user->longitude}}" id="user_longitude">
 
-<div class="my-5 h4">
-   Driver Location
-</div>
+{{-- <input type="hidden" value="27.672968" id="city_latitude">
+<input type="hidden" value="85.429291" id="hotel_longitude">
+
+<input type="hidden" value="27.669238" id="rider_latitude">
+<input type="hidden" value="85.359436" id="rider_longitude">
+
+<input type="hidden" value="27.71678" id="user_latitude">
+<input type="hidden" value="85.353674" id="user_longitude"> --}}
+
+Map
+<span>
+    <button class="btn btn-sm btn-outline-dark float-right show_map">
+        <i id="minimizer_map" class="fas fa-angle-down fa-lg gray"></i>
+    </button>
+</span>
 <div id='map' style='width: 100%; height: 70vh;' class="maps m-auto "></div>
 @endsection
 @section('script')
@@ -30,6 +42,10 @@
             $('.card-collapse').slideToggle();
             $(obj).toggleClass('fa-angle-down');
             $(obj).toggleClass('fa-angle-up');
+        }
+
+        function toggleReply(commentId) {
+            $('.reply_form_' + commentId).toggleClass('d-none');
         }
 
         $('.show_button').click(function () {
@@ -55,43 +71,53 @@
         var user_longitude = document.getElementById('user_longitude').value;
         var user_latitude = document.getElementById('user_latitude').value;
 
-        var user_city = [hotel_longitude, hotel_latitude];
-        var room_place = [rider_longitude, rider_latitude];
-        var seeker_place = [user_longitude, user_latitude];
+        var hotel_city = [hotel_longitude, hotel_latitude];
+        var rider_place = [rider_longitude, rider_latitude];
+        var user_place = [user_longitude, user_latitude];
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiZXhwb3VuZGVyMTIzIiwiYSI6ImNrODJwY3hjeTEzZW0zZm5xeHJxZHQxd3gifQ.7MCsao35-JomeQ69Yg0ecQ';
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11', //v9
-            center: user_city,
-            zoom: 10
+            center: hotel_city,
+            zoom: 12
         });
 
         map.on('load', function () {
-            addMarker(room_place, 'load');
-            addMarker2(seeker_place, 'load');
+            addMarker(rider_place, 'load');
+            addMarker2(user_place, 'load');
+            addMarker3(hotel_city, 'load');
 
         });
 
         // create the popup
-        let markerPopup = new mapboxgl.Popup({offset: 20})
+        let markerPopup = new mapboxgl.Popup({offset: 25})
             .setHTML(" Room's location ");
 
-        let markerPopup2 = new mapboxgl.Popup({offset: 20})
+        let markerPopup2 = new mapboxgl.Popup({offset: 25})
             .setHTML(" Your current location ");
 
         function addMarker(ltlng, event) {
-            marker = new mapboxgl.Marker({draggable: true, color: "#FF0000"})
-                .setLngLat(room_place)
+            marker = new mapboxgl.Marker({draggable: true, color: "#ff0000"})
+                .setLngLat(rider_place)
                 .setPopup(markerPopup) // sets a popup on this marker
                 .addTo(map);
         }
 
         function addMarker2(ltlng, event) {
-            marker = new mapboxgl.Marker({draggable: true, color: "#FF0000"})
-                .setLngLat(seeker_place)
+            marker = new mapboxgl.Marker({draggable: true, color: "#194d19" })
+                .setLngLat(user_place)
                 .setPopup(markerPopup2) // sets a popup on this marker
                 .addTo(map);
         }
+
+        function addMarker3(ltlng, event) {
+        marker = new mapboxgl.Marker({draggable: true, color: "#002699" })
+        .setLngLat(hotel_city)
+        .setPopup(markerPopup2) // sets a popup on this marker
+        .addTo(map);
+        }
+
+       
 </script>
 @endsection

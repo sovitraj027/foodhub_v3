@@ -75,10 +75,10 @@ class StaffController extends Controller
 
     public function updateLocation(Request $request){
 
-        $minLat = 27.4167;
-        $maxLat = 27.8042;
-        $minLng = 85.342034;
-        $maxLng = 85.342049;
+        $minLat = 27.7024;
+        $maxLat = 27.7044; 
+        $minLng = 85.3226;
+        $maxLng = 85.3230;
 
         $lat = mt_rand($minLat * 1000000, $maxLat * 1000000) / 1000000;
         $lng = mt_rand($minLng * 1000000, $maxLng * 1000000) / 1000000;
