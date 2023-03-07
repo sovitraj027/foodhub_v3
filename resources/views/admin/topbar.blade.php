@@ -23,9 +23,8 @@
 				<li>
 					<a href="#" class="user" id="showUserPush">
 						 
-						 @if(isset(Auth::user()->image_icon))
-                                 
-									<img src="{{ URL::asset('upload/members/'.Auth::user()->image_icon.'-s.jpg') }}" width="40" alt="person" class="img-circle">
+						 @if(isset(Auth::user()->image_icon))							
+									<img src="/storage/user-image/{{ Auth::user()->image_icon }}" width="40" alt="person" class="img-circle">
 							
 							@else
 								

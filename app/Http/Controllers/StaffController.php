@@ -18,6 +18,8 @@ class StaffController extends Controller
     {
         $delivery = DeliveryOrder::all();
         $items = $delivery->sortBy('delivery_time');
+        
+
         $order_list = $items->sortBy(function ($item) {
             return $item['type'];
         })->when('package', function ($collection) {
@@ -29,9 +31,9 @@ class StaffController extends Controller
                 return ($a['delivery_time'] < $b['delivery_time']) ? -1 : 1;
             });
         })->values();
-
-        if ($order_list[0] != null) {
-
+        
+        if (count($order_list)>0 &&  $order_list[0] != null) {
+           
             $order = $order_list[0];
 
             if (isset($order->package_id) != null) {

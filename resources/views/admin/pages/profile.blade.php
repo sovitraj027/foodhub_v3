@@ -62,7 +62,7 @@
 
                             </div>
                             <div class="media-body media-middle">
-                                <input type="file" name="user_icon" class="filestyle">
+                                <input type="file" name="image_icon" class="filestyle">
                                 <small class="text-muted bold">Size 80x80px</small>
                             </div>
                         </div>

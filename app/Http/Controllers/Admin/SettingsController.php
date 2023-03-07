@@ -34,11 +34,11 @@ class SettingsController extends MainAdminController
     
     public function settingsUpdates(Request $request)
     {  
-    		 
+    		
     	$settings = Settings::findOrFail('1');
  
 	    
-	    $data =  \Input::except(array('_token')) ;
+	    $data =  $request->except(array('_token')) ;
 	    
 	    $rule=array(
 		        'site_name' => 'required',

@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 	Route::post('profile_pass', [AdminController::class, 'updatePassword']);
 
 	Route::get('settings', [SettingsController::class, 'settings']);
-	Route::post('settings', [SettingsController::class, 'settingsUpdates']);
+	Route::post('settings', [SettingsController::class, 'settingsUpdates'])->name('updateSetting');
 	Route::post('homepage_settings', [SettingsController::class, 'homepage_settings']);
 	Route::post('addthisdisqus', [SettingsController::class, 'addthisdisqus']);
 	Route::post('headfootupdate', [SettingsController::class, 'headfootupdate']);

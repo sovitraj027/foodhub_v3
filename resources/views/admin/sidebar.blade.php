@@ -10,7 +10,8 @@
 				<li class="{{classActivePath('dashboard')}}"><a href="{{ URL::to('admin/dashboard') }}"><i
 							class="fa fa-dashboard"></i>Dashboard</a></li>
 
-				<li class="{{classActivePath('staffs')}}"><a href="{{route('staffs.index')}}"><i class="fa fa-cart-plus"></i>Order
+				<li class="{{classActivePath('staffs')}}"><a href="{{route('staffs.index')}}"><i
+							class="fa fa-cart-plus"></i>Order
 						List</a></li>
 
 				<li class="{{classActivePath('users')}}"><a href="{{ URL::to('admin/users') }}"><i
@@ -57,15 +58,11 @@
 					<div class="media-left media-middle">
 						<a href="#">
 							@if(isset(Auth::user()->image_icon))
-
-							<img src="{{ URL::asset('upload/members/'.Auth::user()->image_icon.'-s.jpg') }}" width="60"
-								alt="person" class="img-circle border-white">
-
+							<img src="/storage/user-image/{{ Auth::user()->image_icon }}" alt="person" width="60"
+								class="img-circle border-white">
 							@else
-
 							<img src="{{ URL::asset('admin_assets/images/guy.jpg') }}" alt="person"
 								class="img-circle border-white" width="60" />
-
 							@endif
 						</a>
 					</div>

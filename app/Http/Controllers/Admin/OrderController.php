@@ -47,9 +47,6 @@ class OrderController extends MainAdminController
     public function order_status($order_id, $status)
     {
         $order = DeliveryOrder::findOrFail($order_id);
-        $order->status = $status;
-        $order->save();
-
         if ($status == "Completed") {
             if (isset($order->package_id) != null) {
                 $package = Package::FindOrFail($order->package_id);
@@ -70,11 +67,15 @@ class OrderController extends MainAdminController
             ];
 
             $pdf = PDF::loadView('pdf.invoice', $data);
-
+            
+            $order->delete();
+           
             return $pdf->download('invoice.pdf');
         } 
         else
          {
+            $order->status = $status;
+            $order->save();
             return redirect()->back()->with('message', 'Status Changed Successfully');
         }
     }

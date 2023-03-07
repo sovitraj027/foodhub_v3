@@ -46,7 +46,7 @@
         <!-- Tab panes -->
         <div class="tab-content tab-content-default">
             <div role="tabpanel" class="tab-pane active" id="account">
-                <form action="{{ url('admin/settings') }}" class="form-horizontal padding-15" id="account_form"
+                <form action="{{ route('updateSetting') }}" class="form-horizontal padding-15" method="POST" id="account_form"
                     name="account_form" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">

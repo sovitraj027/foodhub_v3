@@ -19,7 +19,11 @@ class CreateRestaurantOrderTable extends Migration
             $table->string('item_name');             
             $table->integer('item_price')->length(4);  
             $table->integer('quantity')->length(2);
-            $table->integer('created_date'); 
+            $table->integer('created_date');
+            $table->tinyInteger('status');
+            $table->tinyInteger('cash_status');
+            $table->tinyInteger('esewa_status');
+            $table->string('product_id')->nullable();
             $table->string('status');   
         });
     }

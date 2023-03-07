@@ -72,6 +72,7 @@ class CartController extends Controller
 
     public function confirm_order_details(Request $request)
     {
+        
         $data = $request->except('_token');
         $inputs = $request->all();
         $rule = array(

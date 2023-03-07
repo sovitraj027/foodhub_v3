@@ -22,9 +22,9 @@ class AdminSeeder extends Seeder
         // Create admin account
         DB::table('users')->insert([
             'usertype' => 'Admin',
-            'first_name' => 'John',
-            'last_name' => 'Deo',
-            'email' => 'admin@admin.com',
+            'first_name' => 'Gaurav',
+            'last_name' => 'Pandey',
+            'email' => 'gaurav.pandey@deerwalk.edu.np',
             'password' => bcrypt('admin'),
             'image_icon' => 'admin',
             // 'remember_token' => random_int(),
@@ -56,7 +56,7 @@ class AdminSeeder extends Seeder
             'site_logo' => 'logo.png',
             'site_favicon' => 'favicon.png',
             'site_description' => 'Cloud Kitchen - Food Delivery Script Cloud Kitchen - Food Delivery is an laravel script for Delivery Restaurants',
-            'site_copyright' => 'Copyright © 2016 Cloud Kitchen - Food Delivery Script. All Rights Reserved.',
+            'site_copyright' => 'Copyright © 2023 Cloud Kitchen - Food Delivery Script. All Rights Reserved.',
             'home_slide_image1' => 'home_slide_image1.png',
             'home_slide_image2' => 'home_slide_image2.png',
             'home_slide_image3' => 'home_slide_image3.png',
@@ -72,48 +72,48 @@ class AdminSeeder extends Seeder
         ]);
 
         Category::create([
-            'category_name' => 'Cold Drinks',
-            'category_slug' => 'cold-drinks',
+            'category_name' => 'Breakfast',
+            'category_slug' => 'breakfast',
         ]);
 
         Category::create([
-            'category_name' => 'Hard Drinks',
-            'category_slug' => 'hard-drinks',
+            'category_name' => 'Lunch',
+            'category_slug' => 'lunch',
         ]);
 
         Category::create([
-            'category_name' => 'Meal',
-            'category_slug' => 'meal',
+            'category_name' => 'Momo',
+            'category_slug' => 'momo',
         ]);
 
         Menu::create([
-            'menu_name' => 'Veg Chowmin',
+            'menu_name' => 'Sandwich',
             'menu_type' => \App\Package::Vegetarian,
-            'menu_description' => 'Veg Chowmin',
+            'menu_description' => 'Veg Sandwich',
             'price' => 100,
             'category_id' => 1,
         ]);
 
         Menu::create([
-            'menu_name' => 'Buff Chowmin',
+            'menu_name' => 'Loaded Pancake Tacos',
             'menu_type' => \App\Package::Non_Vegetarian,
-            'menu_description' => 'Buff Chowmin',
+            'menu_description' => 'Loaded Pancake Tacos',
             'price' => 120,
             'category_id' => 1,
         ]);
 
         Menu::create([
-            'menu_name' => 'Buff Chowmin',
+            'menu_name' => 'Fluffy Pancakes',
             'menu_type' => \App\Package::Non_Vegetarian,
-            'menu_description' => 'Buff Chowmin',
+            'menu_description' => 'Fluffy Pancakes',
             'price' => 120,
             'category_id' => 1,
         ]);
 
         Menu::create([
-            'menu_name' => 'Chicken Chowmin',
+            'menu_name' => 'Roasted Hash and Jammy Eggs',
             'menu_type' => \App\Package::Non_Vegetarian,
-            'menu_description' => 'Chicken Chowmin',
+            'menu_description' => 'Roasted Hash and Jammy Eggs',
             'price' => 130,
             'category_id' => 1,
         ]);
@@ -123,7 +123,7 @@ class AdminSeeder extends Seeder
             'menu_type' => \App\Package::Non_Vegetarian,
             'menu_description' => 'Buff Momo',
             'price' => 130,
-            'category_id' => 1,
+            'category_id' => 4,
         ]);
 
         Menu::create([
@@ -131,7 +131,7 @@ class AdminSeeder extends Seeder
             'menu_type' => \App\Package::Non_Vegetarian,
             'menu_description' => 'Chicken Momo',
             'price' => 140,
-            'category_id' => 1,
+            'category_id' => 4,
         ]);
 
         Menu::create([
@@ -139,7 +139,7 @@ class AdminSeeder extends Seeder
             'menu_type' => \App\Package::Vegetarian,
             'menu_description' => 'Veg Momo',
             'price' => 140,
-            'category_id' => 1,
+            'category_id' => 4,
         ]);
 
         Menu::create([
@@ -147,7 +147,7 @@ class AdminSeeder extends Seeder
             'menu_type' => \App\Package::Vegetarian,
             'menu_description' => 'Veg thali includes rice, veggies, lentils, and cutneys',
             'price' => 240,
-            'category_id' => 4,
+            'category_id' => 3,
         ]);
 
 
@@ -156,7 +156,7 @@ class AdminSeeder extends Seeder
             'menu_type' => \App\Package::Non_Vegetarian,
             'menu_description' => 'Chicken thali includes rice, veggies, chicken, lentils, and cutneys',
             'price' => 320,
-            'category_id' => 4,
+            'category_id' => 3,
         ]);
 
         Menu::create([
@@ -164,7 +164,7 @@ class AdminSeeder extends Seeder
             'menu_type' => \App\Package::Vegan,
             'menu_description' => 'Fresh Japanese Mushrooms',
             'price' => 520,
-            'category_id' => 4,
+            'category_id' => 1,
         ]);
 
         Menu::create([

@@ -20,7 +20,7 @@ class CreatePackagesTable extends Migration
             $table->string('image')->nullable();
             $table->string('type')->default(\App\Package::Vegetarian);
             $table->boolean('status')->default(1);
-            $table->float('price_per_day');
+            $table->float('price');
             $table->timestamps();
         });
     }

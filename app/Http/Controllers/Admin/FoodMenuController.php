@@ -81,7 +81,7 @@ class FoodMenuController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Menu $menu)
     {
         $request->validate(
             [
@@ -100,7 +100,7 @@ class FoodMenuController extends Controller
             ]
         );
 
-        $menu = Menu::create($request->except('menu_image', 'status'));
+        $menu->update($request->except('menu_image', 'status'));
         $menu->status = $request->status == true ? '1' : '0';
         $menu->update();
         if ($request->hasFile('menu_image')) {
@@ -110,7 +110,7 @@ class FoodMenuController extends Controller
             }
             $this->fileUpload($menu, 'menu_image', 'menu-image', false);
         }
-        return redirect()->route('menus.index')->with('info', 'Book Updated Successfully!');
+        return redirect()->route('menus.index')->with('info', 'Menu Updated Successfully!');
     }
 
     public function destroy(Menu $menu)
