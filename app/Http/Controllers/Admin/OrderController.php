@@ -9,10 +9,12 @@ use App\Categories;
 use App\Restaurants;
 
 use App\Http\Requests;
+use App\Mail\OderSuccessMessage;
 use App\Menu;
 use App\Models\DeliveryOrder;
 use App\Package;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Session;
 use Intervention\Image\Facades\Image;
 use PDF;
@@ -69,6 +71,20 @@ class OrderController extends MainAdminController
             $pdf = PDF::loadView('pdf.invoice', $data);
             
             $order->delete();
+
+            $user_details = User::where('userType', 'Admin')->first();
+
+            $details = [
+                'quantity' => $order->quantity,
+                'package_name' => isset($package->name) ? $package->name : "",
+                'item_name' => isset($menu->menu_name) ? $menu->menu_name : "",
+                'price' => $order->price,
+                'user' => $user,
+            ];
+
+            Mail::to($user_details->email)->send(
+                new OderSuccessMessage($details)
+            );
            
             return $pdf->download('invoice.pdf');
         } 
