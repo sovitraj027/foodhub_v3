@@ -40,6 +40,9 @@
 				@else
 				<li class="{{classActivePath('staffs')}}"><a href="{{route('staffs.index')}}"><i
 							class="fa fa-cart-plus"></i>Order List</a></li>
+
+				<li class="{{classActivePath('changeLocation')}}"><a href="{{route('changeLocation')}}"><i
+							class="fa fa-map-marker"></i>Update Location</a></li>
 				@endif
 			</ul>
 

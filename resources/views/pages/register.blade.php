@@ -73,8 +73,8 @@
             <div class="form-group">
               <label>User Type</label>
               <select class="form-control" name="usertype" id="usertype">
-                <option value="User">Customer</option>
-                <option value="delivery_staff">Delivery Staff</option>
+                <option value="User" selected >Customer</option>
+                {{-- <option value="delivery_staff">Delivery Staff</option> --}}
               </select>
 
             </div>

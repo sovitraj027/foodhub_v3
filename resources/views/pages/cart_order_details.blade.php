@@ -59,6 +59,16 @@
                             <label>Email</label>
                             <input type="email" id="email" name="email" value="{{ $user->email }}" class="form-control" placeholder="Your email">
                         </div>
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="email" id="email" name="longitude" value="{{ $user->longitude }}" class="form-control"
+                                placeholder="Your longitude">
+                        </div>
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="email" id="email" name="latitude" value="{{ $user->latitude }}" class="form-control"
+                                placeholder="Your latitude">
+                        </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">

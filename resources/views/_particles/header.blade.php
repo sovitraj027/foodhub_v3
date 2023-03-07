@@ -60,7 +60,11 @@
             @endif
 
             <li><a href="{{ URL::to('about') }}">About us</a></li>
-            <li><a href="{{ URL::to('contact') }}">Contact</a></li>              
+            <li><a href="{{ URL::to('contact') }}">Contact</a></li>
+
+            @if(Auth::check() and user_exist(Auth::user()))
+            <li><a href="{{route('location')}}">Driver location</a></li> 
+            @endif             
           </ul>
        
     </nav>

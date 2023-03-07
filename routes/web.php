@@ -91,6 +91,10 @@ Route::get('changeStatus', [UsersController::class, 'changeStatus']);
 
 Route::get('payment', [StaffController::class, 'PaymentStatus']);
 
+Route::get('location',[StaffController::class,'location'])->name('location');
+
+Route::get('update/locattion', [StaffController::class, 'updateLocation'])->name('changeLocation');
+
 
 
 Route::get('/', [IndexController::class, 'index']);

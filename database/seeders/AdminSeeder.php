@@ -11,11 +11,6 @@ use App\Package;
 
 class AdminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('users')->truncate();
@@ -63,7 +58,9 @@ class AdminSeeder extends Seeder
             'page_bg_image' => 'page_bg_image.png',
             'total_restaurant' => '2550',
             'total_people_served' => '5355',
-            'total_registered_users' => '12454'
+            'total_registered_users' => '12454',
+            'longitude'=> '85.342049',
+            'latitude'=> '27.69152',
         ]);
 
         Category::create([

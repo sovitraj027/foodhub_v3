@@ -66,12 +66,24 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="text" id="city" name="latitude" value="{{$user->latitude}}" class="form-control" placeholder="Your city">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="text" id="city" name="longitude" value="{{$user->longitude}}" class="form-control" placeholder="Your city">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
                             <label>Postal code</label>
                             <input type="text" id="postal_code" name="postal_code" value="{{$user->postal_code}}"
                                 class="form-control" placeholder=" Your postal code">
                         </div>
                     </div>
-                    @if(Auth()->user()->usertype=='delivery_staff')
+                    {{-- @if(Auth()->user()->usertype=='delivery_staff')
                     <div class="form-group col-md-6">
                         <label for="">Citizenship Front</label>
                         <input type="file" id="email" name="profile_image" value="" class="form-control"
@@ -87,7 +99,7 @@
                         <input type="file" id="email" name="profile_image" value="" class="form-control"
                             placeholder="Your image">
                     </div>
-                    @endif
+                    @endif --}}
                     <hr>
                     <div>
                         <div class="col-md-6">

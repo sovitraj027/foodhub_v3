@@ -6,6 +6,7 @@ use App\Menu;
 use App\Models\DeliveryOrder;
 use App\Models\User;
 use App\Package;
+use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -61,6 +62,7 @@ class StaffController extends Controller
         return view('rider.order_list', compact('order_list'));
     }
 
+    
     public function PaymentStatus(Request $request)
     {
 
@@ -70,4 +72,31 @@ class StaffController extends Controller
         $order->save();
         return response()->json(['message' => 'Status change successfully.']);
     }
+
+    public function updateLocation(Request $request){
+
+        $minLat = 27.4167;
+        $maxLat = 27.8042;
+        $minLng = 85.342034;
+        $maxLng = 85.342049;
+
+        $lat = mt_rand($minLat * 1000000, $maxLat * 1000000) / 1000000;
+        $lng = mt_rand($minLng * 1000000, $maxLng * 1000000) / 1000000;
+
+        $user=User::FindOrFail(Auth::user()->id);
+        $user->latitude=$lat;
+        $user->longitude=$lng;
+        $user->save();
+
+        return redirect()->back()->with('message', 'Successfuly change location');
+
+    }
+
+    public function location(Request $request){
+        $setting=Settings::first();
+        $rider=User::where('usertype', 'delivery_staff')->first();
+        $user=Auth::user();
+        return view('pages.my_order_location',compact('setting','rider','user'));
+    }
+
 }

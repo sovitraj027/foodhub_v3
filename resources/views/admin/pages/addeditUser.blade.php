@@ -74,6 +74,18 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Longitude</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="longitude" value="{{ isset($user->longitude) ? $user->longitude : null }}" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-3 control-label">Latitude</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="latitude" value="{{ isset($user->latitude) ? $user->latitude : null }}" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="" class="col-sm-3 control-label">Postal Code</label>
                     <div class="col-sm-9">
                         <input type="text" name="postal_code" value="{{ isset($user->postal_code) ? $user->postal_code : null }}" class="form-control">
@@ -91,13 +103,13 @@
                     <div class="col-sm-4">
                         <select id="basic" name="usertype" class="selectpicker show-tick form-control">
                                @if(isset($user->usertype))  
-                                    <option value="Owner" @if($user->usertype=='Owner') selected @endif >Owner</option>
-                                    <option value="User" @if($user->usertype=='User') selected @endif >User</option>
+                                    <option value="User" @if($user->usertype=='User') selected @endif >Customer</option>
+                                    <option value="delivery_staff" @if($user->usertype=='delivery_staff') selected @endif >Rider</option>
                                      
                                 @else
 
-                                    <option value="Owner">Owner</option>
-                                    <option value="User">User</option> 
+                                   <option value="User">Customer</option>
+                                <option value="delivery_staff">Delivery Staff</option> 
                                 
                                 @endif                          
                             

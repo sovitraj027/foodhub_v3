@@ -1,5 +1,7 @@
 
 <?php
+
+use App\Models\DeliveryOrder;
 use App\Settings;
 use App\Widgets;
 use App\Types;
@@ -53,3 +55,23 @@ if (! function_exists('getcong_type')) {
         return $rtype->type;
     }
 }
+
+if (!function_exists('user_exist')) {
+
+    function user_exist($user)
+    {
+      
+        if($user!=null){
+        $user_exist=DeliveryOrder::where('user_id',$user->id)->where('status','Processing')->exists();
+        }
+        if(!empty($user_exist)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+
+    }
+}
+

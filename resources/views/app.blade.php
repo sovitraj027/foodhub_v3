@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     {!! getcong('site_header_code') !!}
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
 </head>
 
@@ -51,7 +53,6 @@
 
         <script src="{{ URL::asset('site_assets/js/jquery-1.11.0.min.js') }}"></script>
         <script src="{{ URL::asset('site_assets/js/bootstrap.min.js') }}"></script>
-
         <script src="{{ URL::asset('site_assets/js/jquery.flexslider-min.js') }}"></script>
         <script src="{{ URL::asset('site_assets/js/jquery.nouislider.min.js') }}"></script>
         <script src="{{ URL::asset('site_assets/js/jquery.sticky.js') }}"></script>

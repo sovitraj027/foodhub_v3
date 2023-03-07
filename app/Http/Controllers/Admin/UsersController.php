@@ -79,6 +79,8 @@ class UsersController extends MainAdminController
         $user->city = $inputs['city'];
         $user->postal_code = $inputs['postal_code'];
         $user->address = $inputs['address'];
+        $user->longitude=$inputs['longitude'];
+        $user->latitude = $inputs['latitude'];
 
         if ($inputs['password']) {
             $user->password = bcrypt($inputs['password']);
