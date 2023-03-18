@@ -61,12 +61,12 @@
                         </div>
                         <div class="form-group">
                             <label>Longitude</label>
-                            <input type="email" id="email" name="longitude" value="{{ $user->longitude }}" class="form-control"
+                            <input type="text" id="email" name="longitude" value="{{ $user->longitude }}" class="form-control"
                                 placeholder="Your longitude">
                         </div>
                         <div class="form-group">
                             <label>Latitude</label>
-                            <input type="email" id="email" name="latitude" value="{{ $user->latitude }}" class="form-control"
+                            <input type="text" id="email" name="latitude" value="{{ $user->latitude }}" class="form-control"
                                 placeholder="Your latitude">
                         </div>
                         <div class="row">

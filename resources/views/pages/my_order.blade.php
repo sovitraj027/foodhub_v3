@@ -34,13 +34,12 @@
             @forelse($order_list as $order_item)
             <tr>
               <td>{{date('m-d-Y',$order_item->created_date)}}</td>
-              <td>{{$order_item->item_name}} </td>
+              <td>{{\App\Menu::getMenunfo($order_item->item_id)->menu_name}} </td>
               <td><strong class="">{{$order_item->quantity}}</strong></td>
-              <td><strong class="">{{getcong('currency_symbol')}}{{ \App\Menu::getMenunfo($order_item->item_id)->price
-                  }}</strong></td>
-              <td><strong class="">{{getcong('currency_symbol')}}{{$order_item->item_price}}</strong></td>
+              <td><strong class="">{{getcong('currency_symbol')}}{{ \App\Menu::getMenunfo($order_item->item_id)->price}}</strong></td>
+              <td><strong class="">{{getcong('currency_symbol')}}{{$order_item->quantity*\App\Menu::getMenunfo($order_item->item_id)->price}}</strong></td>
               <td><strong class="">{{$order_item->status}}</strong></td>
-              @if($order_item->status!='Cancel' and $order_item->status!='Completed')
+              @if($order_item->status!='Cancel' && $order_item->status!='Completed' && $order_item->status!='Processing')
               <td><a href="{{URL::to('cancel_order/'.$order_item->id)}}" class=""><strong>Cancel</strong></a></td>
               @else
               @endif

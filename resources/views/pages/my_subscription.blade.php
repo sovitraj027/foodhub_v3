@@ -61,7 +61,7 @@
                                             <h5>{{ \Carbon\Carbon::parse($subscription->delivery_time)->format('h:i A') }}</h5>
                                         </td>
 
-                                        <td><a href="#" class="btn btn-sm btn-outline-success">Subscribed</a></td>
+                                        <td><a href="{{route('myPackageStatus',$subscription->package_id)}}" class="btn btn btn-success">Delivery Info</a></td>
                                     </tr>
                                 @endforeach
 

@@ -36,17 +36,17 @@
                 </nav>
             </div>
             <div class="row">
-                @foreach($restaurants as $i => $restaurant)
-                    <div class="col-md-6"><a class="strip_list" href="{{URL::to('restaurants/menu/'.$restaurant->restaurant_slug)}}">
+                @foreach($packages as $i => $package)
+                    <div class="col-md-6"><a class="strip_list" href="">
                             <div class="desc">
-                                <h3>{{ $restaurant->restaurant_name }}</h3>
-                                <div class="type"> {{$restaurant->type}} </div>
-                                <div class="location">{{$restaurant->restaurant_address}}  </div>
+                                <h3>{{ $package->name }}</h3>
+                                <div class="type"> {{$package->type}} </div>
+                                {{-- <div class="location">{{$package->restaurant_address}}  </div> --}}
 
-                                <div class="rating">
+                                {{-- <div class="rating">
                                     @for($x = 0; $x < 5; $x++)
 
-                                        @if($x < $restaurant->review_avg)
+                                        @if($x < $package->review_avg)
                                             <i class="fa fa-star"></i>
                                         @else
                                             <i class="fa fa-star fa fa-star-o"></i>
@@ -54,9 +54,10 @@
 
                                     @endfor
 
-                                </div>
-                                <div class="thumb_strip"><img src="{{ URL::asset('upload/restaurants/'.$restaurant->restaurant_logo.'-s.jpg') }}"
-                                                              alt="{{ $restaurant->restaurant_name }}"></div>
+                                </div> --}}
+                             
+                                <div class="thumb_strip"><img src="/storage/package-image/{{ $package->image }}"
+                                                              alt="{{ $package->namee }}"></div>
                             </div>
                         </a>
                     </div>

@@ -13,6 +13,7 @@ use App\Mail\OderSuccessMessage;
 use App\Menu;
 use App\Models\DeliveryOrder;
 use App\Package;
+use App\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Session;
@@ -52,6 +53,9 @@ class OrderController extends MainAdminController
         if ($status == "Completed") {
             if (isset($order->package_id) != null) {
                 $package = Package::FindOrFail($order->package_id);
+                $delivery_order = DeliveryOrder::find($order_id);
+                $sub = Subscription::where('package_id', $package->id)->where('user_id', $delivery_order->user_id)->first();
+                $sub->decrement('days', 1);
             }
             if (isset($order->item_id) != null) {
                 $menu = Menu::FindOrFail($order->item_id);
@@ -67,13 +71,12 @@ class OrderController extends MainAdminController
                 'user' => $user,
 
             ];
-
             $pdf = PDF::loadView('pdf.invoice', $data);
-            
-            $order->delete();
 
+            if ($order->type == 'normal'){
+                $order->delete();
+            }
             $user_details = User::where('userType', 'Admin')->first();
-
             $details = [
                 'quantity' => $order->quantity,
                 'package_name' => isset($package->name) ? $package->name : "",
@@ -85,11 +88,9 @@ class OrderController extends MainAdminController
             Mail::to($user_details->email)->send(
                 new OderSuccessMessage($details)
             );
-           
+
             return $pdf->download('invoice.pdf');
-        } 
-        else
-         {
+        } else {
             $order->status = $status;
             $order->save();
             return redirect()->back()->with('message', 'Status Changed Successfully');

@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Package;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -26,6 +27,7 @@ class IndexController extends Controller
         //      dd('here');
         //     return redirect('install');
         // }
+        
 
         $categories = Categories::all();
 
@@ -36,7 +38,9 @@ class IndexController extends Controller
             ->orderBy('restaurants.review_avg', 'desc')
             ->take(6)
             ->get();
-        return view('pages.index', compact('restaurants', 'categories'));
+
+            $packages=Package::all();
+        return view('pages.index', compact('restaurants', 'categories','packages'));
     }
 
     public function about_us()

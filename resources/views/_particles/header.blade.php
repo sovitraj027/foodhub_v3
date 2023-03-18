@@ -64,7 +64,10 @@
 
             @if(Auth::check() and user_exist(Auth::user()))
             <li><a href="{{route('location')}}">Driver location</a></li> 
-            @endif             
+            @endif
+            @if(Auth::check())
+              <li><a href="{{route('mySubscriptionModel')}}">My Subscription</a></li>
+              @endif      
           </ul>
        
     </nav>

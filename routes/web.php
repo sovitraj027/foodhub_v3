@@ -79,8 +79,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 	Route::get('/getMenus/{slug}', [FoodMenuController::class, 'getMenus'])->name('getMenus');
 	Route::get('/view-subscriptions-model', [FoodMenuController::class, 'viewSubscriptionModel'])->name('viewSubscriptionModel');
 	Route::get('/user_subscription.create/{packageId}', [FoodMenuController::class, 'userSubscriptionCreate'])->name('userSubscriptionCreate');
-	Route::get('/my-subscriptions-model', [FoodMenuController::class, 'addSubscriptionModel'])->name('mySubscriptionModel');
+	Route::get('/my-subscriptions-model', [FoodMenuController::class, 'mySubscriptionModel'])->name('mySubscriptionModel');
 });
+
+Route::get('/my-package/status/{package_id}', [FoodMenuController::class, 'myPackageStatus'])->name('myPackageStatus');
 
 Route::resource('category', CategoryController::class);
 Route::resource('packages', PackageController::class);

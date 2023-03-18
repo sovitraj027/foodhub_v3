@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label for="" class="col-sm-3 control-label">Subscribed From</label>
                                     <div class="col-sm-9">
-                                        <input type="date" name="subscribed_from" class="form-control"><br>
+                                        <input type="date" name="subscribed_from" class="form-control datepicker"><br>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -73,6 +73,12 @@
     noCalendar: true,
     enableTime: true,
     dateFormat: 'h:i K'
+    });
+    const today = new Date();
+    const fp = flatpickr(".datepicker", {
+    minDate: today,
+    // "enableTime": true,
+    dateFormat: "Y-m-d"
     });
 </script>
 @endsection

@@ -8,6 +8,7 @@ use App\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Menu;
+use App\Models\DeliveryOrder;
 use App\Traits\FileUploadTrait;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,7 @@ class FoodMenuController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('viewSubscriptionModel', 'userSubscriptionCreate', 'mySubscriptionModel');
+        $this->middleware('auth')->only('viewSubscriptionModel', 'userSubscriptionCreate', 'mySubscriptionModel', 'myPackageStatus');
     }
 
     public function index()
@@ -147,5 +148,17 @@ class FoodMenuController extends Controller
         return view('pages.my_subscription', [
             'subscriptions' => Subscription::where('user_id', auth()->id())->get()
         ]);
+    }
+
+    public function myPackageStatus($packageId){
+        $order=DeliveryOrder::where('user_id',auth()->user()->id)->where('package_id', $packageId)->first();
+        $package=Package::find($packageId);
+        
+        return view('pages.package_status', [
+            'order' => $order,
+            'package'=>$package
+
+        ]);
+      
     }
 }

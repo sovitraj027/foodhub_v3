@@ -1504,7 +1504,7 @@ a.load_more_bt:hover
 
 .main_title p
 {
-    color: #555;
+    color: #4421a6;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.4;
@@ -1519,9 +1519,9 @@ a.strip_list
 
 .strip_list
 {
-    background-color: #fff;
+    background-color: #14e8e8;
     width: 98%;
-    border: 1px solid #ededed;
+    border: 1px solid #080114;
     border-radius: 50px 2px 50px 2px;
     display: block;
     float: left;
@@ -1541,9 +1541,9 @@ a.strip_list
 
 .thumb_strip
 {
-    border: 1px solid #d3d3d3;
+    border: 1px solid #be1414;
     border-radius: 20%;
-    height: 125px;
+    height: 140px;
     left: 0;
     padding: 5px;
     position: absolute;
@@ -1553,13 +1553,13 @@ a.strip_list
 
 a.strip_list:hover
 {
-    box-shadow: 0 8px 5px 0 #9b9d9f;
+    box-shadow: 0 8px 5px 0 #1177dd;
     transform: translate(0px, -5px);
 }
 
 a.strip_list
 {
-    color: #555;
+    color: #a51010;
     transition: all 0.3s ease-in-out 0s;
 }
 
@@ -1585,6 +1585,7 @@ a.strip_list
     border-radius: 20%;
     height: auto;
     width: 100%;
+    height: 100%;
 }
 
 .strip_list .desc h3
@@ -1596,19 +1597,19 @@ a.strip_list
 
 a.strip_list:hover h3
 {
-    color: #50a42f;
+    color: #f7750451;
 }
 
 .desc h3
 {
     margin: 0;
     padding: 0;
-    color: #464646
+    color: #b72020
 }
 
 .desc .type
 {
-    color: #777;
+    color: #cb2b2b;
     font-size: 12px;
     font-style: italic;
     margin-bottom: 12px;
@@ -2250,7 +2251,7 @@ a.btn_1:hover
 
 #list_shortcuts img
 {
-    height: 100px;
+    height: 160px;
     width: 165px;
     left: 0;
     position: absolute;

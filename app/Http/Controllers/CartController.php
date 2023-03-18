@@ -10,6 +10,7 @@ use App\Menu;
 use App\Types;
 
 use App\Http\Requests;
+use App\Mail\OrderinfoMail;
 use App\Mail\OwnerMailMessage;
 use App\Models\DeliveryOrder;
 use Carbon\Carbon;
@@ -72,7 +73,7 @@ class CartController extends Controller
 
     public function confirm_order_details(Request $request)
     {
-        
+
         $data = $request->except('_token');
         $inputs = $request->all();
         $rule = array(
@@ -130,6 +131,11 @@ class CartController extends Controller
                 new OwnerMailMessage($details)
             );
 
+            $DeliveryStaffEmail= User::where('userType', 'delivery_staff')->first();
+            Mail::to($DeliveryStaffEmail->email)->send(
+                new OrderinfoMail($details)
+            );
+
             $successUrl = url('/success');
             $failureUrl = url('/failure');
 
@@ -151,6 +157,7 @@ class CartController extends Controller
                 'subject' => getcong('site_name') . ' Order Confirmed',
 
             ];
+
             $user_order_email = $inputs['email'];
             Mail::to($user_order_email)->send(
                 new \App\Mail\OderMail($details)
@@ -169,7 +176,7 @@ class CartController extends Controller
             $deliver_order->quantity = $cart_item->quantity;
             $deliver_order->price = $cart_item->item_price;
             $deliver_order->paid_status = 0;
-            $deliver_order->item_id= $cart_item->item_id;
+            $deliver_order->item_id = $cart_item->item_id;
             if ($request->status == 1) {
                 $deliver_order->esewa_status = 1;
             } else {
@@ -184,14 +191,14 @@ class CartController extends Controller
     public function user_orderlist()
     {
         $user_id = Auth::user()->id;
-        $order_list = Order::where('user_id', $user_id)->orderBy('id', 'desc')->orderBy('created_date', 'desc')->get();
+        $order_list = DeliveryOrder::where('user_id', $user_id)->orderBy('id', 'desc')->where('item_id', '!=', null)->get();
         return view('pages.my_order', compact('order_list'));
     }
 
 
     public function cancel_order($order_id)
     {
-        $order = Order::findOrFail($order_id);
+        $order = DeliveryOrder::findOrFail($order_id);
         $order->status = 'Cancel';
         $order->save();
         \Session::flash('flash_message', 'Order has been cancel');

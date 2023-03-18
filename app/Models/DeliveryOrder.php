@@ -16,6 +16,10 @@ class DeliveryOrder extends Model
         'type',
         'status',
         'paid_status',
-        'esewa_status'
+        'esewa_status',
+        'quantity',
+        'price',
+        'package_id',
+        'item_id'
     ];
 }
